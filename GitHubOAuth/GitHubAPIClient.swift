@@ -61,6 +61,24 @@ extension GitHubAPIClient {
     // Start access token request process
     class func startAccessTokenRequest(url url: NSURL, completionHandler: (Bool) -> ()) {
         
+        guard let code = url.getQueryItemValue(named: "code") else {return}
+
+        let params = ["client_id": Secrets.clientID, "client_secret": Secrets.clientSecret, "code": code]
+
+        Alamofire.request(.POST, URLRouter.token, parameters: params, encoding: .URL, headers: nil)
+            .validate()
+            .responseString(completionHandler: { response in
+                switch response.result {
+                case .Success:
+
+                    print(response.result.value)
+                    completionHandler(true)
+
+                case .Failure(let error):
+                    print("\nERROR: \(error.localizedDescription)")
+                    completionHandler(false)
+                }
+            })
     }
     
     // Save access token from request response to keychain

@@ -60,4 +60,6 @@ At the end of the last lab you received a temporary code back from GitHub. You a
       * "client_id": *your client id*
       * "client_secret": *your client secret*
       * "code": *temporary code from GitHub*
-    * Use `request(_:_:parameters:encoding:headers:)` from [Alamofire](http://cocoadocs.org/docsets/Alamofire/3.4.1/Functions.html#/s:F9Alamofire7requestFTOS_6MethodPS_20URLStringConvertible_10parametersGSqGVs10DictionarySSPs9AnyObject___8encodingOS_17ParameterEncoding7headersGSqGS2_SSSS___CS_7Request) to make a POST request using the `.token` string from the `URLRouter`.
+    * Use `request(_:_:parameters:encoding:headers:)` from [Alamofire](http://cocoadocs.org/docsets/Alamofire/3.4.1/Functions.html#/s:F9Alamofire7requestFTOS_6MethodPS_20URLStringConvertible_10parametersGSqGVs10DictionarySSPs9AnyObject___8encodingOS_17ParameterEncoding7headersGSqGS2_SSSS___CS_7Request) to make a POST request using the `.token` string from the `URLRouter` and the parameter dictionary.
+    * If the request is successful, print the value of the response and call `completionHandler(true)`, else `completionHandler(false)`.
+ * Run the application to see if you are getting a successful response.

@@ -68,11 +68,9 @@ class LoginViewController: UIViewController {
             }
 
             GitHubAPIClient.startAccessTokenRequest(url: url, completionHandler: { success in
-                if success {
-                    NSNotificationCenter.defaultCenter().postNotificationName(Notification.closeLoginVC, object: nil)
-                } else {
-                    print("ERROR: token request failed")
-                }
+                
+                
+                
             })
             
         }
