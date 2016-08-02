@@ -50,7 +50,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 ### 3. Set up access token request
 ---
 At the end of the last lab you received a temporary code back from GitHub. You are going to use that code to make a request to GitHub for the access token.
- * Inside the `safariLogin(_:)` method of the `LoginViewController`, call the `startAccess(token:completionHandler:)` method from the `GitHubAPIClient`.
+ * Inside the `safariLogin(_:)` method of the `LoginViewController`, call the `startAccessTokenRequest(url:completionHandler:)` method from the `GitHubAPIClient`.
  * Pass the URL received back from GitHub to the url parameter of the `startAccessTokenRequest(url:completionHandler:)` method.
   * *Hint:* Remember the notification argument passed in from `safariLogin(_:)` has the url stored in the object property.
  * Head over to the `GitHubAPIClient` class to define the `startAccessTokenRequest(url:completionHandler:)` method.
@@ -68,3 +68,7 @@ At the end of the last lab you received a temporary code back from GitHub. You a
 
 ### 4. Save the access token to the keychain
 ---
+ * Use `SwiftyJSON` to get the access token from the response you were working with in the previous step.
+ * Call `saveAccess(token:completionHandler:)` to pass the access token you retrieved from the JSON data.
+ * Define the `saveAccess(token:completionHandler:)` method using the [Locksmith](http://cocoadocs.org/docsets/Locksmith/2.0.8/) pod method `try Locksmith.saveData(["some key": "some value"], forUserAccount: "myUserAccount")`.
+   * The completionHandler should callback with true or false depending on whether the access token is successfully saved.

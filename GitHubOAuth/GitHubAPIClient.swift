@@ -72,11 +72,18 @@ extension GitHubAPIClient {
             .responseJSON(completionHandler: { (response) in
                 switch response.result {
                 case .Success:
-                    let json = JSON(data: response.data!)
-                    let token = json["access_token"].string!
-                    print(token)
+                    guard let data = response.data else {completionHandler(false);return}
+                    let json = JSON(data: data)
+                    let accessToken = json["access_token"].string
+                    guard let token = accessToken else {completionHandler(false);return}
+                    
+                    saveAccess(token: token, completionHandler: { success in
+                        //
+                    })
+                    
                 case .Failure:
-                    print("failure")
+                    print("ERROR: \(response.result.error?.localizedDescription)")
+                    completionHandler(false)
                 }
             })
 
