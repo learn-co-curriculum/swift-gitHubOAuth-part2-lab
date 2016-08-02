@@ -30,7 +30,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
  }
 
  // Save access token from request response to keychain
- private class func saveAccessTokenFrom(response response: String?, completionHandler: (Bool) -> ()) {
+ private class func saveAccess(token token: String, completionHandler: (Bool) -> ()) {
 
  }
 
@@ -50,16 +50,21 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 ### 3. Set up access token request
 ---
 At the end of the last lab you received a temporary code back from GitHub. You are going to use that code to make a request to GitHub for the access token.
- * Inside the `safariLogin(_:)` method of the `LoginViewController`, call the `startAccessTokenRequest(url:completionHandler:)` method from the `GitHubAPIClient`.
+ * Inside the `safariLogin(_:)` method of the `LoginViewController`, call the `startAccess(token:completionHandler:)` method from the `GitHubAPIClient`.
  * Pass the URL received back from GitHub to the url parameter of the `startAccessTokenRequest(url:completionHandler:)` method.
   * *Hint:* Remember the notification argument passed in from `safariLogin(_:)` has the url stored in the object property.
  * Head over to the `GitHubAPIClient` class to define the `startAccessTokenRequest(url:completionHandler:)` method.
   * Use this order of tasks to define the method:
     * Use the `NSURL` extension from the `Extensions` file to extract the code.
-    * Build your parameter dictionary for the request. The dictionary should contain:
+    * Build your parameter dictionary for the request.
       * "client_id": *your client id*
       * "client_secret": *your client secret*
       * "code": *temporary code from GitHub*
-    * Use `request(_:_:parameters:encoding:headers:)` from [Alamofire](http://cocoadocs.org/docsets/Alamofire/3.4.1/Functions.html#/s:F9Alamofire7requestFTOS_6MethodPS_20URLStringConvertible_10parametersGSqGVs10DictionarySSPs9AnyObject___8encodingOS_17ParameterEncoding7headersGSqGS2_SSSS___CS_7Request) to make a POST request using the `.token` string from the `URLRouter` and the parameter dictionary.
-    * If the request is successful, print the value of the response and call `completionHandler(true)`, else `completionHandler(false)`.
+    * Build your headers dictionary to receive JSON data back.
+      * "Accept": "application/json"
+    * Use `request(_:_:parameters:encoding:headers:)` from [Alamofire](http://cocoadocs.org/docsets/Alamofire/3.4.1/Functions.html#/s:F9Alamofire7requestFTOS_6MethodPS_20URLStringConvertible_10parametersGSqGVs10DictionarySSPs9AnyObject___8encodingOS_17ParameterEncoding7headersGSqGS2_SSSS___CS_7Request) to make a POST request using the `.token` string from the `URLRouter`, the parameter dictionary, and the header dictionary.
+    * If the request is successful, print response and call `completionHandler(true)`, else `completionHandler(false)`.
  * Run the application to see if you are getting a successful response.
+
+### 4. Save the access token to the keychain
+---

@@ -59,7 +59,6 @@ class LoginViewController: UIViewController {
     
     func safariLogin(notification: NSNotification) {
         
-        print("receive safari login notification")
         self.safariVC!.dismissViewControllerAnimated(true) {
 
             guard let url = notification.object?.absoluteURL else {
