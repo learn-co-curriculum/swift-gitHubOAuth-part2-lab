@@ -16,4 +16,3 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
   * Info.plist
   * LoginViewController.swift
   * Secrets.swift
-![Copy Files Image](https://s3.amazonaws.com/learn-verified/gitHubOAuth-lab-copy-files.png)
