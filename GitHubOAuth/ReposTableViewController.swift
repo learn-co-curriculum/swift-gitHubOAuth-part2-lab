@@ -44,7 +44,6 @@ class ReposTableViewController: UITableViewController {
         
         GitHubAPIClient.deleteAccessToken { success in
             if success {
-                print("deleted token")
                 NSNotificationCenter.defaultCenter().postNotificationName(Notification.closeReposTVC, object: nil)
             } else {
                 print("ERROR: Unable to delete access token")
