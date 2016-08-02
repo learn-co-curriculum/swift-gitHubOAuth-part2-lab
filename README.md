@@ -70,5 +70,11 @@ At the end of the last lab you received a temporary code back from GitHub. You a
 ---
  * Use `SwiftyJSON` to get the access token from the response you were working with in the previous step.
  * Call `saveAccess(token:completionHandler:)` to pass the access token you retrieved from the JSON data.
- * Define the `saveAccess(token:completionHandler:)` method using the [Locksmith](http://cocoadocs.org/docsets/Locksmith/2.0.8/) pod method `try Locksmith.saveData(["some key": "some value"], forUserAccount: "myUserAccount")`.
-   * The completionHandler should callback with true or false depending on whether the access token is successfully saved.
+ * Define the `saveAccess(token:completionHandler:)` method using the [Locksmith](http://cocoadocs.org/docsets/Locksmith/2.0.8/) pod. Use the method, `try Locksmith.saveData(["some key": "some value"], forUserAccount: "myUserAccount")`.
+   * Key is "access token". Value is "*token from response*". User account is "github".
+   * The `completionHandler` should callback with true or false depending on whether the access token is successfully saved.
+ * Back inside the response section of the `startAccessTokenRequest(url:completionHandler:)` method, update the order of events to be:
+   * Receive response
+   * Serialize JSON data using SwiftyJSON
+   * Call `saveAccess(token:completionHandler:)` method
+   * If save succeeded, call the completion handler with the appropriate response. 
