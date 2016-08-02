@@ -59,8 +59,23 @@ class LoginViewController: UIViewController {
     
     func safariLogin(notification: NSNotification) {
         
-        print(notification.object?.absoluteURL)
-        self.safariVC!.dismissViewControllerAnimated(true, completion: nil)
+        print("receive safari login notification")
+        self.safariVC!.dismissViewControllerAnimated(true) {
+
+            guard let url = notification.object?.absoluteURL else {
+                print("ERROR: Unable to receive URL from notification")
+                return
+            }
+
+            GitHubAPIClient.startAccessTokenRequest(url: url, completionHandler: { success in
+                if success {
+                    NSNotificationCenter.defaultCenter().postNotificationName(Notification.closeLoginVC, object: nil)
+                } else {
+                    print("ERROR: token request failed")
+                }
+            })
+            
+        }
 
     }
     

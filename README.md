@@ -45,3 +45,18 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 
  }
  ```
+
+### 3. Set up access token request
+---
+At the end of the last lab you received a temporary code back from GitHub. You are going to use that code to make a request to GitHub for the access token.
+ * Inside the `safariLogin(_:)` method of the `LoginViewController`, call the `startAccessTokenRequest(url:completionHandler:)` method from the `GitHubAPIClient`.
+ * Pass the URL received back from GitHub to the url parameter of the `startAccessTokenRequest(url:completionHandler:)` method.
+  * *Hint:* Remember the notification argument passed in from `safariLogin(_:)` has the url stored in the object property.
+ * Head over to the `GitHubAPIClient` class to define the `startAccessTokenRequest(url:completionHandler:)` method.
+  * Use this order of tasks to define the method:
+   1. Use the `NSURL` extension from the `Extensions` file to extract the code.
+   2. Build your parameter dictionary for the request. The dictionary should contain:
+    * "client_id": *your client id*
+    * "client_secret:" *your client secret*
+    * "code": *temporary code from GitHub*
+   3. Use `request(_:_:parameters:encoding:headers:)` from [Alamofire](http://cocoadocs.org/docsets/Alamofire/3.4.1/Functions.html#/s:F9Alamofire7requestFTOS_6MethodPS_20URLStringConvertible_10parametersGSqGVs10DictionarySSPs9AnyObject___8encodingOS_17ParameterEncoding7headersGSqGS2_SSSS___CS_7Request) to make a POST request using the `.token` string from the `URLRouter`. 

@@ -58,6 +58,27 @@ extension GitHubAPIClient {
 // MARK: OAuth
 extension GitHubAPIClient {
     
+    // Start access token request process
+    class func startAccessTokenRequest(url url: NSURL, completionHandler: (Bool) -> ()) {
+        
+    }
+    
+    // Save access token from request response to keychain
+    private class func saveAccessTokenFrom(response response: String?, completionHandler: (Bool) -> ()) {
+        
+    }
+    
+    // Get access token from keychain
+    private class func getAccessToken() -> String? {
+        
+        return nil
+        
+    }
+    
+    // Delete access token from keychain
+    class func deleteAccessToken(completionHandler: (Bool) -> ()) {
+        
+    }
     
     class func hasToken() -> Bool {
         
