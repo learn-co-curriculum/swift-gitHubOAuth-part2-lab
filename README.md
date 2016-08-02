@@ -17,3 +17,31 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
   * LoginViewController.swift
   * Secrets.swift
 ![Copy Files Image](https://s3.amazonaws.com/learn-verified/gitHubOAuth-lab-copy-files.png)
+
+### 2. Add OAuth methods to GitHubAPIClient
+---
+ * Add the following methods to the GitHubAPIClient extension marked "OAuth"
+
+ ```swift
+ // Start access token request process
+ class func startAccessTokenRequest(url url: NSURL, completionHandler: (Bool) -> ()) {
+
+ }
+
+ // Save access token from request response to keychain
+ private class func saveAccessTokenFrom(response response: String?, completionHandler: (Bool) -> ()) {
+
+ }
+
+ // Get access token from keychain      
+ private class func getAccessToken() -> String? {
+
+         return nil
+
+ }
+
+ // Delete access token from keychain
+ class func deleteAccessToken(completionHandler: (Bool) -> ()) {
+
+ }
+ ```
