@@ -88,3 +88,12 @@ At the end of the last lab you received a temporary code back from GitHub. You a
  * Update the `hasToken()` method to check if there is a token saved.
    * Use `getAccessToken()` to determine whether the method should return `true` or `false`.
  * Reset the simulator and run the application. At this point you should be able to log in again. Stop the application. Run it again and you should be directed to the table view controller containing a list of repositories.
+
+## Bonus Challenge
+Resetting the simulator and rerunning the application will indicate if everything is working correctly but it's not ideal. There are a few more pieces to this puzzle that can make it complete. Here's what's left:
+
+ * Login
+    * The `LoginViewController` starts the login process **BUT** the `AppController` doesn't know about the outcome of the process. That means it doesn't know whether it should display the table view controller or not. `startAccessTokenRequest(url:completionHandler:)` is called inside the `LoginViewController` with a callback about whether the process succeeded. If it succeeds, post a notification using the appropriate `Notification` name. The `AppController` already has the observer set up.
+
+  * Logout
+    * The `ReposTableViewController` has an IBAction for the log out button. This method needs to call `deleteAccessToken(_:)` from `GitHubAPIClient` and use the completion handler to determine whether to post a notification to the `AppController` to close the table view controller. `deleteAccessToken` still needs to be defined. It should delete the token and call back with the outcome.

@@ -123,6 +123,14 @@ extension GitHubAPIClient {
     // Delete access token from keychain
     class func deleteAccessToken(completionHandler: (Bool) -> ()) {
         
+        do {
+            try Locksmith.deleteDataForUserAccount("github")
+            completionHandler(true)
+        } catch let error {
+            print("ERROR: \(error)")
+            completionHandler(false)
+        }
+        
     }
     
     class func hasToken() -> Bool {
