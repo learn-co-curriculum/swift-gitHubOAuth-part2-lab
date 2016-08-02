@@ -77,4 +77,14 @@ At the end of the last lab you received a temporary code back from GitHub. You a
    * Receive response
    * Serialize JSON data using SwiftyJSON
    * Call `saveAccess(token:completionHandler:)` method
-   * If save succeeded, call the completion handler with the appropriate response. 
+   * If save succeeded, call the completion handler with the appropriate response.
+   * Run the application using print statements accordingly to see that everything is working correctly.
+
+### 5. Define the `getAccessToken()` method
+---
+ * Use the Locksmith method, `Locksmith.loadDataForUserAccount()` to retrieve the access token and return it.
+ * Update the `starred(repoName:)` static function defined in the `URLRouter` enum.
+   * `starredURL` needs to be combined with the access token for user account requests.
+ * Update the `hasToken()` method to check if there is a token saved.
+   * Use `getAccessToken()` to determine whether the method should return `true` or `false`.
+ * Reset the simulator and run the application. At this point you should be able to log in again. Stop the application. Run it again and you should be directed to the table view controller containing a list of repositories.
