@@ -3,7 +3,7 @@
 ## Objectives
 
  * Finish setting up the OAuth2 protocol to access a user's GitHub account
- 
+
 ### 1. Add files to project
 ---
  * Add the following five files to this project from your completed version of the part one lab:
@@ -73,7 +73,7 @@ At the end of the last lab you received a temporary code back from GitHub. You a
    * Receive response
    * Serialize JSON data using SwiftyJSON
    * Call `saveAccess(token:completionHandler:)` method
-   * If save succeeded, call the completion handler with the appropriate response.
+   * If save succeeded, call the completion handler of `startAccessTokenRequest(url:completionHandler:)` with the appropriate response.
    * Run the application using print statements accordingly to see that everything is working correctly.
 
 ### 5. Define the `getAccessToken()` method
